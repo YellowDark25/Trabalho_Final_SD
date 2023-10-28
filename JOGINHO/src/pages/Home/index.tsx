@@ -22,13 +22,7 @@ const Home: React.FC = () => {
     };
 
     if (selectedRoom) {
-        return (
-            <div>
-                <h1>{selectedRoom.name}</h1>
-                <button onClick={handleRoomLeave}>Sair da sala</button>
-                {/* Aqui você pode adicionar o componente da sala selecionada */}
-            </div>
-        );
+        window.location.href = `/sala-de-espera/${selectedRoom.id}`;
     }
 
     return (
