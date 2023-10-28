@@ -39,9 +39,9 @@ export function SalaDeEspera() {
           onClick={() => {
             handlePlayerReady(2);
           }}
-          color={pronto === false ? "warning" : "success"}
+          color={pronto === false ? "error" : "success"}
         >
-          Iniciar Jogo
+          {pronto === false ? "Não estou pronto" : "Estou pronto"}
         </Button>
       </Box>
     </>
