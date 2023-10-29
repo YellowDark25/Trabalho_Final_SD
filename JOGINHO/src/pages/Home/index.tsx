@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Typography, Button, Box } from '@mui/material';
 
 interface Room {
     id: number;
@@ -11,31 +12,40 @@ const Home: React.FC = () => {
         { id: 2, name: 'Sala 2' },
         { id: 3, name: 'Sala 3' },
     ]);
-    const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
-
-    const handleRoomSelect = (room: Room) => {
-        setSelectedRoom(room);
-    };
-
-    const handleRoomLeave = () => {
-        setSelectedRoom(null);
-    };
-
-    if (selectedRoom) {
-        window.location.href = `/sala-de-espera/${selectedRoom.id}`;
-    }
 
     return (
-        <div>
-            <h1>Escolha uma sala</h1>
-            <ul>
+
+        <Box
+            height={"100vh"}
+            width={"100vw"}
+            display={"flex"}
+            flexDirection={"column"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            bgcolor={"gray"}
+        >
+
+            <Typography variant="h3" component="h1">Escolha uma sala</Typography>
+            <Box
+                display={"flex"} flexDirection={"column"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                width={"100%"}
+
+            >
                 {rooms.map((room) => (
-                    <li key={room.id}>
-                        <button onClick={() => handleRoomSelect(room)}>{room.name}</button>
-                    </li>
+                    <Box
+                        display={"flex"} justifyContent={"center"} alignItems={"center"}
+                        textAlign={"center"}
+                        margin={"10px"}
+                    >
+                        <Button key={room.id} variant="contained">
+                            {room.name}
+                        </Button>
+                    </Box>
                 ))}
-            </ul>
-        </div>
+            </Box>
+        </Box>
     );
 };
 
