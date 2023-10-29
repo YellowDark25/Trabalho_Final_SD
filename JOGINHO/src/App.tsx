@@ -1,10 +1,9 @@
-import Home from "./pages/Home";
+import { DefaultRoutes } from "./routes/DefaultRoutes";
 
-export default function App(){
-  return(
-    <div className="App">
-      <h1>Olá Mundo</h1>
-      <Home/>
-    </div>
-  )
-} 
+export default function App() {
+  return (
+    <>
+      <DefaultRoutes />
+    </>
+  );
+}
