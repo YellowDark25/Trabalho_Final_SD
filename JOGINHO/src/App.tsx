@@ -1,14 +1,10 @@
-import { Box } from "@mui/material";
-import Home from "./pages/Home";
+
+import { DefaultRoutes } from "./routes/DefaultRoutes";
 
 export default function App() {
   return (
-    <div className="App">
-      <Box
-      display={"flex"} justifyContent={"center"} alignItems={"center"}>
-
-        <Home />
-      </Box>
-    </div>
-  )
-} 
+    <>
+      <DefaultRoutes />
+    </>
+  );
+}

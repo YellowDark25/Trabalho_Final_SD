@@ -12,16 +12,6 @@ const Home: React.FC = () => {
         { id: 2, name: 'Sala 2' },
         { id: 3, name: 'Sala 3' },
     ]);
-    // const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
-
-    // const handleRoomSelect = (room: Room) => {
-    //     setSelectedRoom(room);
-    // };
-
-    // const handleRoomLeave = () => {
-    //     setSelectedRoom(null);
-    // };
-
 
     return (
 
