@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Box, Button } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { salas } from "../../constants/salas";
+import EsperaImagem from "../../assets/sasuke.png";
 
 export function SalaDeEspera() {
   const [pronto, setPronto] = useState(false);
@@ -10,15 +11,15 @@ export function SalaDeEspera() {
   const handlePlayerReady = (id: number) => {
     const novaListaSalas = Salas.salas.map((sala) => {
       if (sala.id === id) {
-        if(pronto === false){
-            if (sala.jogadores < sala.maxJogadores) {
-                setPronto(true);
-                return { ...sala, jogadores: sala.jogadores + 1 };
-              }
+        if (pronto === false) {
+          if (sala.jogadores < sala.maxJogadores) {
+            setPronto(true);
+            return { ...sala, jogadores: sala.jogadores + 1 };
+          }
         }
-        else{
-            setPronto(false);
-            return { ...sala, jogadores: sala.jogadores - 1 };
+        else {
+          setPronto(false);
+          return { ...sala, jogadores: sala.jogadores - 1 };
         }
       }
       return sala;
@@ -27,22 +28,25 @@ export function SalaDeEspera() {
   };
   return (
     <>
-      <Box
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        flexDirection={"column"}
-      >
-        <h1>Sala de Espera: {id.id}</h1>
-        <Button
-          variant={"contained"}
-          onClick={() => {
-            handlePlayerReady(2);
-          }}
-          color={pronto === false ? "error" : "success"}
+      <Box>
+
+        <Box
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          flexDirection={"column"}
         >
-          {pronto === false ? "Não estou pronto" : "Estou pronto"}
-        </Button>
+          <h1>Sala de Espera: {id.id}</h1>
+          <Button
+            variant={"contained"}
+            onClick={() => {
+              handlePlayerReady(2);
+            }}
+            color={pronto === false ? "error" : "success"}
+          >
+            {pronto === false ? "Não estou pronto" : "Estou pronto"}
+          </Button>
+        </Box>
       </Box>
     </>
   );
