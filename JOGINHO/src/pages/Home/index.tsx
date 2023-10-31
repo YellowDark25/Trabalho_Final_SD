@@ -24,26 +24,31 @@ const Home: React.FC = () => {
             alignItems={"center"}
             bgcolor={"gray"}
         >
-
-            <Typography variant="h3" component="h1">Escolha uma sala</Typography>
             <Box
-                display={"flex"} flexDirection={"column"}
-                justifyContent={"center"}
-                alignItems={"center"}
-                width={"100%"}
+            border={"3px solid black"}
+            borderRadius={"10px"}
+            padding={"10px"}>
 
-            >
-                {rooms.map((room) => (
-                    <Box
-                        display={"flex"} justifyContent={"center"} alignItems={"center"}
-                        textAlign={"center"}
-                        margin={"10px"}
-                    >
-                        <Button key={room.id} variant="contained">
-                            {room.name}
-                        </Button>
-                    </Box>
-                ))}
+                <Typography variant="h3" component="h1">Escolha uma sala</Typography>
+                <Box
+                    display={"flex"} flexDirection={"column"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    width={"100%"}
+
+                >
+                    {rooms.map((room) => (
+                        <Box
+                            display={"flex"} justifyContent={"center"} alignItems={"center"}
+                            textAlign={"center"}
+                            margin={"10px"}
+                        >
+                            <Button key={room.id} variant="contained">
+                                {room.name}
+                            </Button>
+                        </Box>
+                    ))}
+                </Box>
             </Box>
         </Box>
     );
