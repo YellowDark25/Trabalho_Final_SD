@@ -1,37 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Button, Box } from '@mui/material';
 import BackgroundVideo from '../../components/video';
+import { getSalas } from '../../services/api';
+import { participante } from '../SalaDeEspera';
 
 
 interface Room {
     id: number;
-    name: string;
-}
-
-interface RoomOccupancy {
-    [key: number]: number;
+    nome: string;
+    capacidade: number;
+    participantes: participante[];
+    _count: {participantes: number}
 }
 
 const Home: React.FC = () => {
+    
+    const [rooms, setRooms] = useState<Room[]>([]);
+    async function GetSalas(){
+        await getSalas().then((response) => {
+            setRooms(response.data)
+        })
+    }
+    console.log(rooms.map((e) => (e)))
 
-    const [rooms, setRooms] = useState<Room[]>([
-        { id: 1, name: 'Sala 1: Player vs Boot' },
-        { id: 2, name: 'Sala 2: Player vs Player' },
-        { id: 3, name: 'Sala 3: Experimental' },
-    ]);
-
-    const [roomOccupancy, setRoomOccupancy] = useState<RoomOccupancy>({
-        1: 0,
-        2: 0,
-        3: 0,
-    });
-
-    const handleJoinRoom = (roomId: number) => {
-        setRoomOccupancy(prevState => ({
-            ...prevState,
-            [roomId]: prevState[roomId] + 1,
-        }));
+    const handleJoinRoom = async (roomId: number) => {
+        // const data = {participanteId: participanteId}
+        window.location.href = "/sala-de-espera/" + roomId
+        // await putSala(roomId, data)
     };
+
+    useEffect(() => {
+        GetSalas()
+    },[])
 
     return (
         <Box
@@ -70,16 +70,16 @@ const Home: React.FC = () => {
                             width={"100%"}
                         >
                             <Button
-                                
+                                sx={{}}
                                 key={room.id}
                                 variant="contained"
                                 onClick={() => handleJoinRoom(room.id)}
                             >
-                                {room.name}
+                                {room.nome}
                             </Button>
                             <Typography variant="h6" component="h2"
                             paddingRight={"60px"}>
-                                {roomOccupancy[room.id]} pessoas na sala
+                                {room._count.participantes} pessoas na sala
                             </Typography>
                         </Box>
                     ))}
